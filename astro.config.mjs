@@ -14,4 +14,5 @@ const base = process.env.BASE_PATH || (
 export default defineConfig({
   site: 'https://ben-sauer.github.io',
   base: '/engineering-portfolio-ben',
+  vite: { plugins: [tailwindcss()] },
 });
