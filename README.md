@@ -59,7 +59,9 @@ The public email is `bsauer@g.hmc.edu`. Replace the PDF at the same path to upda
 
 The default is Monochrome, with JetBrains Mono and Share Tech Mono typography. A small terminal palette appears in the profile panel. Existing template themes remain available; the choice persists when browser storage is available. Content is visible without JavaScript. Terminal commands include `help`, `about`, `projects`, `skills`, `resume`, `contact`, `theme`, `gui`, and `clear`.
 
-The original games, radio, music/presence widgets, mobile notice, and effects remain in the source tree but are not mounted on portfolio pages. They do not load their integrations in the default site.
+The optional terminal restores the original welcome/prompt style, output panels, file aliases (`cat bio.txt`, `ls`), profile summary (`neofetch`), command history, and autocomplete. It reads your current profile, experience, leadership, and project content. Its styling lives in `src/styles/terminal.css`.
+
+Pong, Snake, and Matrix rain are available through terminal commands; games and effects stay inactive until requested. `sfx` enables sound for the current session and `crt` toggles subtle scanlines in the terminal. The visual portfolio remains the default view. Radio, music/presence widgets, and the mobile notice remain unmounted.
 
 ## Hosting paths
 

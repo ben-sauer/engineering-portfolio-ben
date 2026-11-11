@@ -5,21 +5,21 @@ export const PORTFOLIO_DATA = {
     title: "Engineering student · Harvey Mudd College",
     email: "bsauer@g.hmc.edu",
     location: "Upland, California",
-    github: "", // Add your profile URL when you want to show it.
-    bio: "I’m an engineering student interested in robotics, dynamics, and mechanical design. My work delivers tangible results through simulation that guides hands-on prototyping and controls.",
+    github: "",
+    bio: "I’m an engineering student interested in robotics, dynamics, and mechanical design. My work delivers tangible results through simulation that guides hands-on prototyping.",
     resume: "documents/benjamin-sauer-resume.pdf",
     education: "B.S. Engineering · Expected May 2028",
   },
   skills: [
-    { category: "Dynamics & controls", items: ["State-space modeling", "PID control", "Skyhook control", "Python", "MATLAB", "ANSYS Fluent"] },
-    { category: "Mechanical design & fabrication", items: ["SolidWorks", "Fusion 360", "AutoCAD", "Manual lathe & mill", "CNC machining", "3D printing"] },
-    { category: "Electronics & integration", items: ["Arduino", "Sensor integration & calibration", "PWM motor control", "Oscilloscope", "Multimeter"] },
+    { category: "Dynamics & Controls", items: ["Python", "MATLAB", "ANSYS Fluent", "State-space modeling", "PID control", "Skyhook control"] },
+    { category: "Mechanical Design & Fabrication", items: ["SolidWorks", "Fusion 360", "AutoCAD", "Manual lathe & mill", "CNC machining", "3D printing"] },
+    { category: "Electronics & Integration", items: ["Arduino", "Sensor integration & calibration", "PWM motor control", "Oscilloscope", "Multimeter"] },
   ],
   experience: [
     { title: "Civil Engineering Intern", organization: "Fuscoe Engineering", period: "June–August 2026", description: "Prepared AutoCAD plan sets for residential and commercial land-development projects and reviewed utility placement and drawing notation." },
     { title: "Autonomous Underwater Vehicle: Depth Control", organization: "Engineering project", period: "August–December 2025", description: "Integrated pressure and temperature sensors, applied PID control to PWM-driven thrusters, and benchtop-tested sensors and electronics. Measured depth error: 1.07%." },
-    { title: "Coordinator, Music Mentors", organization: "Claremont Colleges volunteer program", period: "Sophomore year", description: "Coordinated volunteers, outreach, planning, and communication with families to support local music education." },
-    { title: "Physics & Math Tutor", organization: "PAYS · Draper Center for Community Partnerships", period: "Freshman year", description: "Tutored weekly in physics and mathematics. Received the Draper Center Passion in Service award." },
+    { title: "Music Mentors Coordinator", organization: "The Draper Center for Community Partnerships", period: "August 2025-May 2026", description: "Coordinated volunteers, outreach, planning, and communication with families to increase students served by 148% from previous years" },
+    { title: "Physics & Math Tutor", organization: "PAYS · Draper Center for Community Partnerships", period: "August 2024-May 2026", description: "Tutored weekly in physics and mathematics. Received the Draper Center Passion in Service award." },
   ],
   leadership: {
     title: "Founder & President, STEM Bridges",

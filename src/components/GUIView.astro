@@ -14,14 +14,14 @@ const { developer, skills, leadership, experience } = PORTFOLIO_DATA;
     <div class="profile-bar"><span><span aria-hidden="true">&gt;_</span> ~/portfolio / profile</span><span class="profile-stamp">ENGINEERING STUDENT</span></div>
     <div class="hero">
       <div class="hero-copy">
-        <p class="eyebrow"><span aria-hidden="true">$</span> whoami</p>
-        <h1 id="intro-title">BENJAMIN<br /><span>SAUER<span class="cursor" aria-hidden="true">_</span></span></h1>
-        <p class="hero-focus">Dynamics · Controls · Mechanical design</p>
+        <p class="eyebrow"><span aria-hidden="true">$</span> home_page</p>
+        <h1 id="intro-title">BENJAMIN<br /><span>SAUER</span></h1>
+        <p class="hero-focus">Dynamics · Controls · Mechanical Design</p>
         <Neofetch />
         <div class="bio-block"><p class="bio-label"><span aria-hidden="true">&gt;</span> cat bio.txt</p><p class="hero-description">{developer.bio}</p></div>
         <div class="button-row">
           <a class="button primary" href="#projects">[ Explore projects ↓ ]</a>
-          <a class="button" href={sitePath(developer.resume)}>[ Resume ↗ ]</a>
+          <a class="button" href={sitePath(developer.resume)}>[ Resume ]</a>
         </div>
       </div>
       <figure class="hero-photo">
@@ -33,12 +33,12 @@ const { developer, skills, leadership, experience } = PORTFOLIO_DATA;
   </section>
 
   <section id="projects" class="portfolio-section" aria-labelledby="projects-title">
-    <SectionHeading id="projects-title" command="ls projects/" title="Selected engineering work" badge="CASE STUDIES" />
+    <SectionHeading id="projects-title" command="ls projects/" title="Selected engineering work" />
     <div class="project-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} />)}</div>
   </section>
 
   <section id="skills" class="portfolio-section panel-section" aria-labelledby="skills-title">
-    <SectionHeading id="skills-title" command="./skills.sh" title="Technical toolkit" badge="TOOLS & METHODS" />
+    <SectionHeading id="skills-title" command="./skills.sh" title="Technical toolkit"/>
     <div class="skills-grid">{skills.map((group, index) => <div class="skill-group">
       <h3><span class="skill-index" aria-hidden="true">[{String(index + 1).padStart(2, "0")}]</span>{group.category}</h3>
       <ul>{group.items.map(item => <li><span aria-hidden="true">▸</span>{item}</li>)}</ul>
@@ -46,7 +46,7 @@ const { developer, skills, leadership, experience } = PORTFOLIO_DATA;
   </section>
 
   <section id="leadership" class="portfolio-section panel-section" aria-labelledby="leadership-title">
-    <SectionHeading id="leadership-title" command="leadership.md" title="Leadership & Outreach" badge="COMMUNITY" />
+    <SectionHeading id="leadership-title" command="leadership.md" title="Leadership & Outreach" />
     <div class="leadership-body">
       <div class="leadership-title"><p class="eyebrow">STEM BRIDGES</p><h3>{leadership.title}</h3><p class="muted">{leadership.period}</p><p class="status-note">{leadership.status}</p></div>
       <div class="leadership-copy"><p>{leadership.description}</p><p>{leadership.details}</p></div>

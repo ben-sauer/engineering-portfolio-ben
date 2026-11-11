@@ -1,0 +1,56 @@
+/* Optional interactive terminal: presentation adapted from the original TUI template. */
+.original-cli { padding: 28px 0; min-height: 650px; font-size: .8rem; }
+.terminal-welcome { margin-bottom: 22px; font-size: .78rem; line-height: 1.9; color: var(--fg-dim); }
+.terminal-welcome-title { color: var(--accent); font-weight: 700; margin-bottom: 5px; }
+.cli-inline-command, .cli-welcome-card button { border: 0; padding: 0; background: none; color: var(--accent); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.original-cli .cli-output { height: auto; max-height: min(65vh, 760px); min-height: 180px; border: 0; padding: 0 8px 0 0; margin: 0 0 18px; font-size: .78rem; line-height: 1.85; }
+.cli-welcome-card { border-left: 2px solid var(--accent); padding: 12px 16px; background: var(--bg-card); }
+.cli-welcome-card p { margin: 4px 0; }
+.cli-welcome-card strong { color: var(--fg-bright); }
+.cli-accent { color: var(--accent); }
+.cli-error { color: #f87171; }
+.original-cli #cli-form { border-top: 1px solid var(--border-color); padding-top: 14px; gap: 10px; }
+.cli-prompt, .cli-echo { font-weight: 700; }
+.cli-prompt { white-space: nowrap; }
+.cli-user { color: #34d399; }
+.cli-host { color: var(--fg-bright); }
+.cli-path { color: #22d3ee; }
+.original-cli #cli-input { background: transparent; border: 0; padding: 6px 2px; font-size: .8rem; caret-color: var(--accent); }
+.original-cli #cli-input:focus-visible { outline-offset: 2px; }
+.original-cli #cli-input::placeholder { color: var(--fg-dim); opacity: .8; }
+.original-cli #cli-hint { font-size: .62rem; margin-top: 12px; }
+.cli-echo { margin: 22px 0 8px; overflow-wrap: anywhere; color: var(--fg-bright); }
+.cli-card { border: 1px solid var(--border-color); background: var(--bg-card); padding: 18px; margin: 10px 0; }
+.cli-card h2 { font-size: .86rem; line-height: 1.7; letter-spacing: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 9px; margin-bottom: 12px; color: var(--fg-bright); }
+.cli-card p { margin: 10px 0; }
+.cli-card .tag-list { margin: 12px 0; }
+.cli-card-grid { display: grid; gap: 2px; }
+.cli-help-list { margin: 0; }
+.cli-help-list > div { display: grid; grid-template-columns: 115px minmax(0,1fr); gap: 12px; margin: 9px 0; }
+.cli-help-list dt button { border: 0; padding: 0; background: none; color: var(--accent); font-weight: 700; }
+.cli-help-list dt button:hover { text-decoration: underline; }
+.cli-help-list dd { margin: 0; }
+.cli-help-list small { display: block; color: var(--fg-dim); font-size: .65rem; }
+.cli-contact-row { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 16px; font-size: .72rem; }
+.cli-skill-list, .cli-link-list { padding: 0; list-style: none; }
+.cli-skill-list li { padding: 5px 0; }
+.cli-skill-list li::before { content: "▸ "; color: var(--accent); }
+.cli-link-list li { padding: 5px 0; }
+.cli-neofetch { display: grid; grid-template-columns: 140px minmax(0,1fr); align-items: center; gap: 24px; }
+.cli-ascii { color: var(--accent); font: .9rem/1.15 'JetBrains Mono',monospace; overflow-x: auto; margin: 0; }
+.cli-neofetch .profile-facts dt, .cli-neofetch .profile-facts dd { font-size: .7rem; }
+.cli-directory { display: flex; flex-wrap: wrap; gap: 12px 24px; padding: 12px 0; }
+.cli-directory button { color: var(--accent); background: none; border: 0; padding: 0; text-decoration: underline; }
+.cli-history { font: inherit; white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .original-cli { padding-top: 22px; }
+  .terminal-welcome { font-size: .7rem; }
+  .cli-prompt { font-size: .67rem; }
+  .original-cli #cli-form { flex-wrap: wrap; gap: 5px; }
+  .original-cli #cli-input { flex: 1 1 120px; width: 0; }
+  .original-cli .cli-output { font-size: .72rem; max-height: 60vh; }
+  .cli-card { padding: 13px; }
+  .cli-help-list > div { grid-template-columns: 80px minmax(0,1fr); gap: 8px; }
+  .cli-neofetch { grid-template-columns: 1fr; gap: 16px; }
+  .cli-ascii { font-size: .8rem; }
+}

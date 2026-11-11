@@ -2,87 +2,258 @@
 import type { CollectionEntry } from "astro:content";
 import { PORTFOLIO_DATA } from "../data/portfolio";
 import { sitePath } from "../utils/paths";
+import Neofetch from "./Neofetch.astro";
+import "../styles/terminal.css";
+import PongGame from "./PongGame.astro";
+import SnakeGame from "./SnakeGame.astro";
+import MatrixRain from "./MatrixRain.astro";
 interface Props { projects: CollectionEntry<"projects">[]; }
 const { projects } = Astro.props;
-const { developer, skills } = PORTFOLIO_DATA;
-const entries = projects.map(project => ({ title: project.data.title, summary: project.data.summary, href: sitePath(`projects/${project.id}/`) }));
+const { developer, skills, experience, leadership } = PORTFOLIO_DATA;
+const commands = [
+  { name: "help", description: "Display the command manual", usage: "help / man" },
+  { name: "about", description: "Read my bio and engineering focus", usage: "about / cat bio.txt" },
+  { name: "skills", description: "Explore tools and technical skills", usage: "skills / cat skills.sh" },
+  { name: "projects", description: "Browse engineering case studies", usage: "projects / repos" },
+  { name: "experience", description: "Read experience and involvement", usage: "experience / collabs" },
+  { name: "leadership", description: "Learn about STEM Bridges", usage: "leadership / cat leadership.md" },
+  { name: "neofetch", description: "Show my engineering profile and palette", usage: "neofetch" },
+  { name: "contact", description: "Display contact information", usage: "contact / mail" },
+  { name: "resume", description: "Get my resume", usage: "resume" },
+  { name: "links", description: "Show portfolio and profile links", usage: "links / socials" },
+  { name: "ls", description: "List the portfolio directory", usage: "ls / dir" },
+  { name: "theme", description: "Switch the terminal color palette", usage: "theme <name>" },
+  { name: "pong", description: "Open the original Pong arcade game", usage: "pong / ./pong.sh" },
+  { name: "snake", description: "Open the original Snake arcade game", usage: "snake / ./snake.sh" },
+  { name: "matrix", description: "Toggle the original Matrix rain overlay", usage: "matrix" },
+  { name: "sfx", description: "Toggle terminal sound feedback", usage: "sfx" },
+  { name: "crt", description: "Toggle subtle CRT scanlines", usage: "crt" },
+  { name: "history", description: "Display this session’s command history", usage: "history" },
+  { name: "clear", description: "Clear the output buffer", usage: "clear / cls / Ctrl+L" },
+  { name: "gui", description: "Return to the visual portfolio", usage: "gui" },
+];
+const banner = [
+  " ____  ____",
+  "| __ )/ ___|",
+  "|  _ \\___ \\",
+  "| |_) |___) |",
+  "|____/|____/",
+].join("\n");
 ---
-<section id="view-cli" class="cli-view" aria-label="Optional portfolio terminal" hidden>
-  <p class="eyebrow">ben@engineering:~/portfolio</p>
-  <h1 class="cli-heading">Engineering, from the command line.</h1>
-  <p>This terminal is an alternate way to explore the portfolio. Type <code>help</code> to get started.</p>
-  <div id="cli-output" class="cli-output" role="log" aria-live="polite" aria-relevant="additions"></div>
+<section id="view-cli" class="cli-view original-cli" aria-label="Interactive portfolio terminal" hidden>
+  <header class="terminal-welcome">
+    <p class="terminal-welcome-title">WELCOME TO {developer.name.toUpperCase()}’S PORTFOLIO TERMINAL</p>
+    <p>Type <button class="cli-inline-command" type="button" data-cli-command="help">help</button> to view available commands, or <button class="cli-inline-command" type="button" data-cli-command="gui">[#] GUI Dashboard</button> for visual mode.</p>
+  </header>
+  <div id="cli-output" class="cli-output" role="log" aria-live="polite" aria-relevant="additions" aria-label="Terminal output">
+    <div class="cli-welcome-card">
+      <p><strong>{developer.name} — {developer.title}</strong></p>
+      <p class="muted">{developer.education}</p>
+      <p class="cli-accent">Type <button type="button" data-cli-command="about">about</button>, <button type="button" data-cli-command="skills">skills</button>, or <button type="button" data-cli-command="projects">projects</button> to explore.</p>
+    </div>
+  </div>
   <form id="cli-form" autocomplete="off">
-    <label for="cli-input"><span aria-hidden="true">❯</span><span class="sr-only">Portfolio command</span></label>
-    <input id="cli-input" name="command" type="text" spellcheck="false" autocapitalize="off" aria-describedby="cli-hint" />
-    <button class="button" type="submit">Run</button>
+    <label class="cli-prompt" for="cli-input"><span aria-hidden="true"><span class="cli-user">guest</span>@<span class="cli-host">ben-sauer</span>:<span class="cli-path">~</span>$</span><span class="sr-only">Portfolio command</span></label>
+    <input id="cli-input" name="command" type="text" spellcheck="false" autocapitalize="off" placeholder="Type 'help', 'about', or 'projects'…" aria-describedby="cli-hint" enterkeyhint="send" />
+    <button class="sr-only" type="submit">Run command</button>
   </form>
-  <p id="cli-hint" class="muted">Try projects, about, skills, resume, contact, theme mono, or gui. ↑ / ↓ for command history.</p>
-  <script type="application/json" id="cli-data" set:html={JSON.stringify({ developer: { ...developer, resume: sitePath(developer.resume) }, skills, projects: entries }).replace(/</g, "\\u003c")} />
+  <p id="cli-hint" class="muted">[TAB] autocomplete · [↑ / ↓] history · [CTRL+L] clear · [ENTER] run</p>
+
+  <template id="cli-help-template"><section class="cli-card"><h2>AVAILABLE TERMINAL COMMANDS</h2><dl class="cli-help-list">{commands.map(command => <div><dt><button type="button" data-cli-command={command.name}>{command.name}</button></dt><dd>{command.description}<small>{command.usage}</small></dd></div>)}</dl></section></template>
+  <template id="cli-about-template"><section class="cli-card"><h2>📄 ABOUT ME // {developer.name}</h2><p>{developer.bio}</p><div class="cli-contact-row"><span>📍 {developer.location}</span><a href={`mailto:${developer.email}`}>✉ {developer.email}</a></div></section></template>
+  <template id="cli-skills-template"><div class="cli-card-grid">{skills.map(group => <section class="cli-card"><h2>⚙ {group.category}</h2><ul class="cli-skill-list">{group.items.map(item => <li>{item}</li>)}</ul></section>)}</div></template>
+  <template id="cli-projects-template"><div class="cli-card-grid">{projects.map(project => <section class="cli-card"><h2>▸ {project.data.title}</h2><p class="cli-accent">{project.data.period} // {project.data.role}</p><p>{project.data.summary}</p><ul class="tag-list">{project.data.tools.map(tool => <li>{tool}</li>)}</ul><a href={sitePath(`projects/${project.id}/`)}>Open case study ↗</a></section>)}</div></template>
+  <template id="cli-experience-template"><div class="cli-card-grid">{experience.map(item => <section class="cli-card"><h2>🤝 {item.title}</h2><p class="cli-accent">{item.organization} // {item.period}</p><p>{item.description}</p></section>)}</div></template>
+  <template id="cli-leadership-template"><section class="cli-card"><h2>STEM BRIDGES // {leadership.title}</h2><p class="cli-accent">{leadership.period}</p><p>{leadership.description}</p><p>{leadership.details}</p><p class="muted">{leadership.status}</p></section></template>
+  <template id="cli-neofetch-template"><section class="cli-card cli-neofetch"><pre class="cli-ascii" aria-hidden="true">{banner}</pre><div><h2>{developer.name} // ENGINEERING PROFILE</h2><p>{developer.title}</p><Neofetch /></div></section></template>
+  <template id="cli-contact-template"><section class="cli-card"><h2>✉ CONTACT INFO</h2><p><span class="cli-accent">Email:</span> <a href={`mailto:${developer.email}`}>{developer.email}</a></p><p><span class="cli-accent">Location:</span> {developer.location}</p><p><a href={sitePath(developer.resume)}>Resume (PDF) ↗</a></p></section></template>
+  <template id="cli-links-template"><section class="cli-card"><h2>↗ PORTFOLIO & PROFILE LINKS</h2><ul class="cli-link-list"><li><a href={`mailto:${developer.email}`}>Email: {developer.email}</a></li><li><a href={sitePath(developer.resume)}>Resume (PDF) ↗</a></li><li><button class="cli-inline-command" type="button" data-cli-command="gui">Visual portfolio ↗</button></li>{developer.github && <li><a href={developer.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>}</ul></section></template>
 </section>
+<PongGame />
+<SnakeGame />
+<MatrixRain />
 <script>
   import { ALL_THEMES, applyTheme } from "../config/themeConfig";
+  import { initSfxFromStorage, toggleSfx, isSfxEnabled, playKeypressSound, playSuccessSound, playErrorSound } from "../utils/sound";
   const form = document.querySelector<HTMLFormElement>("#cli-form");
   const input = document.querySelector<HTMLInputElement>("#cli-input");
   const output = document.getElementById("cli-output");
-  const source = document.getElementById("cli-data")?.textContent;
-  interface TerminalData {
-    developer: { bio: string; name: string; title: string; email: string; resume: string };
-    skills: { category: string; items: string[] }[];
-    projects: { title: string; summary: string; href: string }[];
-  }
-  if (form && input && output && source) {
-    const data: TerminalData = JSON.parse(source);
+  const terminal = document.getElementById("view-cli");
+  if (form && input && output && terminal) {
+    // Optional effects belong to the terminal; entering it never starts audio.
+    try { initSfxFromStorage(); } catch { /* Storage is optional. */ }
+    // Muted until explicitly enabled for this session.
+    if (isSfxEnabled()) {
+      try { toggleSfx(false); } catch { /* Storage is optional. */ }
+    }
     const history: string[] = [];
-    let position = 0;
-    const commands = ["help", "about", "projects", "skills", "resume", "contact", "theme", "gui", "clear"];
-    function line(text: string, link?: string) {
+    let historyIndex = 0;
+    let draft = "";
+    let soundEnabled = false;
+    let crtEnabled = false;
+    const names = ["help", "about", "skills", "projects", "experience", "leadership", "neofetch", "contact", "resume", "links", "ls", "cat", "pwd", "whoami", "echo", "theme", "pong", "snake", "matrix", "sfx", "crt", "history", "clear", "gui"];
+    const files: Record<string, string> = {
+      "bio.txt": "about", "about.txt": "about", "skills.sh": "skills",
+      "projects.md": "projects", "collabs.md": "experience", "experience.md": "experience",
+      "leadership.md": "leadership", "contact.txt": "contact", "resume.pdf": "resume",
+    };
+    const aliases: Record<string, string> = {
+      man: "help", bio: "about", collabs: "experience", repos: "projects", mail: "contact",
+      socials: "links", urls: "links", fetch: "neofetch", dir: "ls", cls: "clear",
+      game: "pong", play: "pong", "./pong.sh": "pong", "./snake.sh": "snake", "./skills.sh": "skills",
+    };
+    const gameWindow = window as typeof window & {
+      togglePong?: (open?: boolean) => void;
+      toggleSnake?: (open?: boolean) => void;
+      toggleMatrix?: (open?: boolean) => void;
+    };
+    const line = (text: string, className = "") => {
       const row = document.createElement("p");
-      if (link) {
-        const a = document.createElement("a");
-        a.href = link; a.textContent = text; row.append(a);
-      } else row.textContent = text;
-      output!.append(row);
+      row.className = className;
+      row.textContent = text;
+      output.append(row);
+    };
+    const panel = (name: string) => {
+      const template = document.querySelector<HTMLTemplateElement>("#cli-" + name + "-template");
+      if (template) output.append(template.content.cloneNode(true));
+    };
+    const settle = () => {
+      while (output.childElementCount > 100) output.firstElementChild?.remove();
+      output.scrollTop = output.scrollHeight;
+    };
+    const goToPortfolio = () => {
+      gameWindow.toggleMatrix?.(false);
+      document.getElementById("crt-overlay-layer")?.classList.add("hidden");
+      document.dispatchEvent(new Event("portfolio:view"));
+      document.getElementById("tab-gui")?.focus();
+    };
+    document.addEventListener("portfolio:view", () => {
+      gameWindow.toggleMatrix?.(false);
+      document.getElementById("crt-overlay-layer")?.classList.add("hidden");
+    });
+    document.getElementById("tab-gui")?.addEventListener("click", () => {
+      gameWindow.toggleMatrix?.(false);
+      document.getElementById("crt-overlay-layer")?.classList.add("hidden");
+    });
+    document.getElementById("tab-cli")?.addEventListener("click", () => {
+      document.getElementById("crt-overlay-layer")?.classList.toggle("hidden", !crtEnabled);
+    });
+    new MutationObserver(() => {
+      if (!terminal.hidden) return;
+      gameWindow.togglePong?.(false);
+      gameWindow.toggleSnake?.(false);
+      gameWindow.toggleMatrix?.(false);
+      document.getElementById("crt-overlay-layer")?.classList.add("hidden");
+    }).observe(terminal, { attributes: true, attributeFilter: ["hidden"] });
+    function run(raw: string) {
+      raw = raw.trim();
+      if (!raw) return;
+      history.push(raw);
+      if (history.length > 200) history.shift();
+      historyIndex = history.length;
+      draft = "";
+      const echo = document.createElement("div");
+      echo.className = "cli-echo";
+      const prompt = terminal!.querySelector(".cli-prompt > span")!.cloneNode(true);
+      echo.append(prompt, document.createTextNode(" " + raw));
+      output!.append(echo);
+      const [typed, ...args] = raw.split(/\s+/);
+      let command = aliases[typed.toLowerCase()] || typed.toLowerCase();
+      if (command === "cat") {
+        const file = args[0]?.toLowerCase().replace(/^\.\//, "");
+        command = files[file] || "";
+        if (!command) line(file ? "cat: " + file + ": No such file" : "Usage: cat <" + Object.keys(files).join(" | ") + ">", "cli-error");
+      }
+      switch (command) {
+        case "help": case "about": case "skills": case "projects": case "experience":
+        case "leadership": case "neofetch": case "contact": case "links":
+          panel(command); break;
+        case "resume": {
+          const link = document.createElement("a");
+          link.href = document.querySelector<HTMLAnchorElement>('.site-nav a[href$=".pdf"]')!.href;
+          link.textContent = "Download Benjamin Sauer’s resume (PDF) ↗";
+          const card = document.createElement("div"); card.className = "cli-card"; card.append(link); output.append(card);
+          break;
+        }
+        case "ls": {
+          const listing = document.createElement("div"); listing.className = "cli-directory";
+          for (const [file, name] of Object.entries(files).filter(([file]) => !["about.txt", "collabs.md"].includes(file))) {
+            const button = document.createElement("button");
+            button.type = "button"; button.dataset.cliCommand = name; button.textContent = file;
+            listing.append(button);
+          }
+          output.append(listing); break;
+        }
+        case "pwd": line("/home/ben-sauer/portfolio", "cli-accent"); break;
+        case "whoami": line("Benjamin Sauer", "cli-accent"); break;
+        case "echo": line(args.join(" ")); break;
+        case "history": {
+          const list = document.createElement("pre");
+          list.className = "cli-history"; list.textContent = history.map((item, index) => String(index + 1).padStart(3, " ") + "  " + item).join("\n"); output.append(list); break;
+        }
+        case "theme": {
+          const theme = ALL_THEMES.find(theme => theme.id === args[0]?.toLowerCase());
+          if (!theme) { line("Themes: " + ALL_THEMES.map(theme => theme.id).join(" · ") + ". Usage: theme <name>"); break; }
+          applyTheme(theme.id);
+          try { localStorage.setItem("tui_theme", theme.id); } catch { /* Storage is optional. */ }
+          const select = document.querySelector<HTMLSelectElement>("#theme-select"); if (select) select.value = theme.id;
+          line("Theme switched to " + theme.name + ".", "cli-accent"); break;
+        }
+        case "pong": gameWindow.togglePong?.(true); break;
+        case "snake": gameWindow.toggleSnake?.(true); break;
+        case "matrix": gameWindow.toggleMatrix?.(); line("Toggled Matrix rain. Press Escape to close.", "cli-accent"); break;
+        case "sfx":
+          soundEnabled = !soundEnabled;
+          try { toggleSfx(soundEnabled); } catch { /* Storage is optional. */ }
+          line("Sound feedback: " + (soundEnabled ? "ENABLED" : "MUTED"), "cli-accent"); break;
+        case "crt":
+          crtEnabled = !crtEnabled;
+          document.documentElement.style.setProperty("--scanline-opacity", "0.08");
+          document.getElementById("crt-overlay-layer")?.classList.toggle("hidden", !crtEnabled);
+          line("CRT scanlines: " + (crtEnabled ? "ON" : "OFF"), "cli-accent"); break;
+        case "clear": output.replaceChildren(); break;
+        case "gui": goToPortfolio(); break;
+        case "": break;
+        default:
+          line("shell: command not found: " + typed + ". Type help for the command manual.", "cli-error");
+          if (soundEnabled) playErrorSound();
+      }
+      if (soundEnabled && names.includes(command)) playSuccessSound();
+      settle();
     }
     form.addEventListener("submit", event => {
       event.preventDefault();
-      const raw = input.value.trim();
-      if (!raw) return;
-      history.push(raw); position = history.length; input.value = "";
-      line("❯ " + raw);
-      const [command, argument] = raw.toLowerCase().split(/\s+/);
-      switch (command) {
-        case "help": line("Commands: " + commands.join(", ")); break;
-        case "about": line(data.developer.name + " · " + data.developer.title); line(data.developer.bio); break;
-        case "projects": data.projects.forEach(project => { line(project.title + " ↗", project.href); line(project.summary); }); break;
-        case "skills": data.skills.forEach(group => line(group.category + ": " + group.items.join(", "))); break;
-        case "resume": line("View resume (PDF) ↗", data.developer.resume); break;
-        case "contact": line(data.developer.email, "mailto:" + data.developer.email); break;
-        case "theme":
-          if (!ALL_THEMES.some(theme => theme.id === argument)) { line("Themes: " + ALL_THEMES.map(theme => theme.id).join(", ")); break; }
-          applyTheme(argument);
-          try { localStorage.setItem("tui_theme", argument); } catch { /* Storage is optional. */ }
-          const select = document.querySelector<HTMLSelectElement>("#theme-select");
-          if (select) select.value = argument;
-          line("Theme: " + argument); break;
-        case "gui": document.dispatchEvent(new Event("portfolio:view")); document.getElementById("tab-gui")?.focus(); break;
-        case "clear": output.replaceChildren(); break;
-        default: line("Unknown command. Type help to see available commands.");
-      }
-      // Keep the log bounded without inserting user input as HTML.
-      while (output.childElementCount > 80) output.firstElementChild?.remove();
-      output.scrollTop = output.scrollHeight;
+      const raw = input.value; input.value = ""; run(raw);
+    });
+    terminal.addEventListener("click", event => {
+      const target = event.target as HTMLElement;
+      const button = target.closest<HTMLButtonElement>("[data-cli-command]");
+      if (button) { run(button.dataset.cliCommand || ""); input.focus(); return; }
+      if (!target.closest("a,button,input,select") && !window.getSelection()?.toString()) input.focus();
     });
     input.addEventListener("keydown", event => {
+      if (event.ctrlKey && event.key.toLowerCase() === "l") { event.preventDefault(); output.replaceChildren(); return; }
+      if (event.ctrlKey && event.key.toLowerCase() === "c") { event.preventDefault(); line("guest@ben-sauer:~$ " + input.value + "^C", "muted"); input.value = ""; historyIndex = history.length; settle(); return; }
       if (event.key === "ArrowUp" || event.key === "ArrowDown") {
         event.preventDefault();
-        position = Math.max(0, Math.min(history.length, position + (event.key === "ArrowUp" ? -1 : 1)));
-        input.value = history[position] || "";
+        if (historyIndex === history.length) draft = input.value;
+        historyIndex = Math.max(0, Math.min(history.length, historyIndex + (event.key === "ArrowUp" ? -1 : 1)));
+        input.value = historyIndex === history.length ? draft : history[historyIndex];
+        return;
       }
-      if (event.key === "Tab" && input.value) {
-        const matches = commands.filter(command => command.startsWith(input.value.toLowerCase()));
-        if (matches.length === 1) { event.preventDefault(); input.value = matches[0]; }
+      if (event.key === "Tab") {
+        const text = input.value.trimStart().toLowerCase();
+        const isCat = text.startsWith("cat ");
+        const prefix = isCat ? text.slice(4) : text;
+        const matches = (isCat ? Object.keys(files) : names).filter(name => name.startsWith(prefix));
+        if (text && matches.length) {
+          event.preventDefault();
+          if (matches.length === 1) input.value = (isCat ? "cat " : "") + matches[0];
+          else { line("Possible matches: " + matches.join("  "), "muted"); settle(); }
+        }
+        return;
       }
+      if (soundEnabled && event.key.length === 1) playKeypressSound();
     });
   }
 </script>
