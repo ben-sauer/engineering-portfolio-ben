@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { sitePath } from "../utils/paths";
+interface Props { project: CollectionEntry<"projects">; index: number; }
+const { project, index } = Astro.props;
+const { data } = project;
+---
+<article class="project-card">
+  <a class="project-image-link" href={sitePath(`projects/${project.id}/`)} aria-label={`View ${data.title}`} tabindex="-1">
+    <img src={sitePath(data.cover)} alt={data.coverAlt} loading="lazy" decoding="async" style={`object-fit:${data.coverFit}`} width="1200" height="800" />
+    <span class="project-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+  </a>
+  <div class="project-card-content">
+    <p class="eyebrow">{data.discipline}</p>
+    <h3><a href={sitePath(`projects/${project.id}/`)}>{data.title} <span aria-hidden="true">↗</span></a></h3>
+    <p>{data.summary}</p>
+    <ul class="tag-list" aria-label="Tools">{data.tools.slice(0, 3).map(tool => <li>{tool}</li>)}</ul>
+    <span class="project-period">{data.period}</span>
+  </div>
+</article>

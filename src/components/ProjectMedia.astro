@@ -1,0 +1,21 @@
+---
+import { sitePath } from "../utils/paths";
+interface Props {
+  type?: "image" | "video";
+  src: string;
+  alt: string;
+  caption: string;
+  poster?: string;
+  mime?: string;
+}
+const { type = "image", src, alt, caption, poster, mime } = Astro.props;
+---
+<figure class="project-media">
+  {type === "video" ? <video controls playsinline preload="none" aria-label={alt} poster={poster ? sitePath(poster) : undefined}>
+    <source src={sitePath(src)} type={mime} />
+    <a href={sitePath(src)}>Download video</a>
+  </video> : <a href={sitePath(src)} aria-label={`Open full-size image: ${alt}`}>
+    <img src={sitePath(src)} alt={alt} loading="lazy" decoding="async" />
+  </a>}
+  <figcaption>{caption}{type === "video" && <> <a href={sitePath(src)}>Download video</a></>}</figcaption>
+</figure>

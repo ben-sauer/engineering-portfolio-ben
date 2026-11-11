@@ -1,205 +1,74 @@
-<div align="center">
+# Benjamin Sauer — Engineering Portfolio
 
-# 🖥️ Retro TUI Portfolio
+An Astro + Tailwind portfolio adapted from the Retro TUI Portfolio template. The visual portfolio opens by default; the optional terminal explores the same project content. No backend or external contact-form service is needed.
 
-A minimal, high-aesthetic Terminal User Interface portfolio template.  
-Built with **Astro.js v7** & **Tailwind CSS v4**.
+## Local development
 
-<br />
+Use the existing supported Node.js installation and npm:
 
-[![Astro](https://img.shields.io/badge/Astro-v7.0-BC52EE?style=flat&logo=astro&logoColor=white)](https://astro.build)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4.0-06B6D4?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-[![TypeScript](https://img.shields.io/badge/TypeScript-v5.0-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![Astro Themes](https://img.shields.io/badge/Astro%20Themes-Available%20Now-FF5D01?style=flat&logo=astro&logoColor=white)](https://portal.astro.build/themes/retro-tui-portfolio/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-10b981?style=flat)](LICENSE.MD)
-
-<br />
-<br />
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https%3A%2F%2Fgithub.com%2Fnivinvysakh%2Fastro-tui-portfolio)
-
-<br />
-<br />
-
-<p align="center">
-  <a href="https://astro-tui-portfolio.netlify.app"><strong>🌐 Launch Live Demo</strong></a> &nbsp;•&nbsp;
-  <a href="https://portal.astro.build/themes/retro-tui-portfolio/"><strong>🌟 Available on Astro Themes</strong></a>
-</p>
-
-</div>
-
-<br />
-
-> 🌟 **Available on Astro Themes:** This theme is officially listed and available on the [Astro Theme Directory](https://portal.astro.build/themes/retro-tui-portfolio/).
-
----
-
-## 🌐 Live Preview
-
-Experience the interactive retro terminal portfolio live in your browser:
-- 🔗 **Live Demo**: [https://astro-tui-portfolio.netlify.app](https://astro-tui-portfolio.netlify.app)
-- 🌟 **Astro Themes Directory**: [retro-tui-portfolio on Astro Themes](https://portal.astro.build/themes/retro-tui-portfolio/)
-
----
-
-## 🎮 Video Demo
-
-https://github.com/user-attachments/assets/b48b7e89-4402-48b1-a201-9028e0d75327
-
----
-
-## 🎨 Retro CRT Themes
-
-Switch between **6 built-in CRT themes** in real-time via the header dropdown or the `theme <name>` CLI command:
-
-| **🟢 Phosphor Green** | **🟠 Amber CRT** |
-| :---: | :---: |
-| ![Phosphor Green](themes/Phosphor_Green.png) | ![Amber Monitor](themes/Amber_CRT.png) |
-
-| **🔵 Cyber Cyan** | **🟣 Dracula Synth** |
-| :---: | :---: |
-| ![Cyber Cyan](themes/Cyber_Cyan.png) | ![Dracula Synth](themes/Dracula_Synth.png) |
-
-| **⚪ Monochrome** | **☕ Cappuccino** |
-| :---: | :---: |
-| ![Retro Monochrome](themes/Monochrome.png) | ![Cappuccino Theme](themes/Cappuccino.png) |
-
-<p align="center">
-  <em>Includes a custom retro 404 terminal error screen:</em>
-</p>
-
-<div align="center">
-  <img src="themes/404.png" alt="404 Terminal Page" width="70%" />
-</div>
-
----
-
-## 📻 Retro Cassette Radio & 24/7 Live Streams
-
-An interactive retro cassette tape player with real-time Web Audio API spectrum visualization:
-- **Curated Tracks**: Built-in Lo-Fi, Chiptune, Synthwave, and Ambient tracks.
-- **24/7 Live Streams**: Includes 24/7 live YouTube radio streams (Lofi Girl 🔴 LIVE, Synthwave 🔴 LIVE, Chillhop 🔴 LIVE).
-- **Custom Song Streaming**: Stream any song or live radio from YouTube by pasting the video URL into the player or executing `radio add <url>` in CLI.
-- **Infinite Live Duration**: Displays `00:00 / ∞` for 24/7 live stream stations.
-
-<div align="center"><img src="themes/radio.png" alt="Retro Radio Player" width="50%" /></div>
-
----
-
-## 🐍 Retro Arcade Snake (`./snake.sh`)
-
-A classic 60 FPS HTML5 Canvas Snake arcade mini-game built right into the terminal:
-- **Controls**: Play using `W/A/S/D`, Arrow keys, or mobile D-Pad touch buttons (▲ ◀ ▼ ▶).
-- **Sound Effects**: Web Audio API sound synthesis for eating apples, steering, and game-over alerts.
-- **High Scores**: Persistent high-score tracking stored in browser `localStorage`.
-
-
-<div align="center"><img src="themes/Snake.png" alt="Retro Snake Game" width="70%" /></div>
-
----
-
-## 🕹️ Retro Arcade Pong (`./pong.sh`)
-
-A 1972-style 60 FPS HTML5 Canvas Pong arcade mini-game vs CPU AI:
-- **Controls**: Steer your paddle using `W/S`, `↑/↓` Arrow keys, Mouse drag, or mobile touch controls.
-- **Rally & Score Counter**: Real-time rally counter and persistent high-score tracking.
-
-
-<div align="center"><img src="themes/Pong.png" alt="Retro Pong Game" width="80%" /></div>
-
----
-
-## 🐙 Live GitHub Repositories & Metrics
-
-Real-time integration with the GitHub REST API:
-- **Live Metrics**: Automatically fetches total stars ⭐, total forks 🍴, followers count 👥, and public repository statistics.
-- **Language Breakdown**: Displays primary programming languages across all public repositories.
-- **Featured Repositories Grid**: Interactive cards displaying repository stars, description, and direct links.
-
-<div align="center"><img src="themes/Github%20GUI.png" alt="Live GitHub Stats & Repositories" width="80%" /></div>
-
-### 🖥️ GitHub CLI Integration (`github` / `repos`)
-
-Access live GitHub metrics and featured repositories directly inside the terminal CLI:
-- **CLI Commands**: Execute `github` (or `gh` / `stats`) to view live profile metrics, or `repos` (or `projects`) to browse top repositories.
-- **Interactive Terminal Cards**: Formatted terminal output displaying repository stars, forks, language badges, and direct links.
-
-<div align="center"><img src="themes/Github%20CLI.png" alt="GitHub CLI Integration" width="80%" /></div>
-
----
-
-## ✨ Key Features
-
-- **Dual-Mode UI** — Switch between an interactive **`>_ CLI Terminal`** (history, tab autocomplete) and a **`[#] GUI Dashboard`**.
-- **📻 Retro Lo-Fi Radio + 24/7 Live Radio Streams** — Cassette radio with Web Audio API real-time spectrum visualizer, 24/7 Live Lofi Girl / Synthwave streams, & custom YouTube URL loader.
-- **🐍 Retro Arcade Snake & 🕹️ Pong** — Fully playable 60 FPS HTML5 Canvas arcade games with sound synthesis, zero-latency touch controls, and persistent high-scores.
-- **📱 100% Mobile & Touch Optimized** — Pinned window headers, touch D-Pad controls, centered cassette player, and responsive layout for mobile screens (Samsung Galaxy S23 FE, iPhones, Android).
-- **🐙 Live GitHub Stats & Repos** — Real-time GitHub REST API metrics: total stars ⭐, forks 🍴, followers, languages breakdown & repositories.
-- **6 Vintage CRT Themes** — Phosphor Green, Amber, Cyber Cyan, Dracula Synth, Monochrome, and Cappuccino with dynamic runtime CSS variables.
-- **CRT Shader & Audio FX** — Scanline overlays, vignette shadows, and Web Audio API keypress sounds.
-- **Live Activity Streaming** — Optional Discord Lanyard WebSocket integration for Spotify activity and live gaming status (disabled by default).
-- **Zero-Backend Contact Form** — Working AJAX email transmission via FormSubmit.co with confetti celebration.
-- **100% Static & Fast** — Built with Astro v7 for instant load times and zero overhead.
-
----
-
-## 🚀 Quick Start
-
-```bash
-# Clone and install
-git clone https://github.com/nivinvysakh/astro-tui-portfolio.git
-cd astro-tui-portfolio
+```sh
 npm install
-
-# Start local dev server
 npm run dev
+npm run check
+npm run build
+npm run preview
 ```
 
-Open **`http://localhost:4321`** to view your live portfolio.
+On Windows PowerShell, use `npm.cmd` if execution policy blocks `npm.ps1`. The dev server defaults to http://127.0.0.1:4321.
 
-> **🐳 Docker:** Run `docker compose up tui-portfolio-dev` for live development with hot-reloading.
+## Where to edit
 
----
+| Content | File |
+| --- | --- |
+| Bio, email, skills, experience, STEM Bridges | `src/data/portfolio.ts` |
+| Project text, dates, roles, tools, galleries, downloads | `src/content/projects/*.md` |
+| Homepage structure | `src/components/GUIView.astro` |
+| Shared project layout | `src/layouts/ProjectLayout.astro` |
+| Project content schema | `src/content.config.ts` |
+| Portfolio styling | `src/styles/global.css` (portfolio section) |
+| Theme palettes | `src/config/themeConfig.ts` |
+| Resume PDF | `public/documents/benjamin-sauer-resume.pdf` |
+| Web images, documents, video | `public/images/`, `public/documents/`, `public/media/` |
 
-## ⚙️ Customization
+Original materials stay in `reference-materials/`, which is ignored by Git and is not published. Only deliberately selected files copied into `public/` are included in the website. Images there are smaller web copies; the two rail PNG plots are unchanged copies.
 
-- **Content & Bio** &rarr; [`src/data/portfolio.ts`](src/data/portfolio.ts)  
-  *Update bio, skills matrix, hardware specs, collaborations, and contact details.*
+## Add a project
 
-- **Themes, Radio & Integrations** &rarr; [`src/config/`](src/config/)  
-  *Configure custom CRT themes (`themeConfig.ts`), Radio tracks & 24/7 Live Streams (`radioConfig.ts`), Spotify RPC (`spotifyConfig.ts`), and live Gaming presence (`gamesConfig.ts`).*
-  > 💡 **Note:** Spotify and Gaming live activity widgets are disabled by default until configured with your Discord Lanyard User ID (`lanyardUserId: ""`).
+1. Copy `docs/project-template.md` into `src/content/projects/your-project-slug.md`.
+2. Fill in the frontmatter and Markdown body. The filename becomes `/projects/your-project-slug/`.
+3. Add web assets to `public/images/projects/your-project-slug/`.
+4. Use paths relative to `public/` in frontmatter, for example `images/projects/your-project-slug/photo.webp`. Do not include `public/` or a leading slash.
+5. Set `draft: false` to generate a page. Set `featured: true` to show its card on the homepage. Set `order` to control its position.
+6. Run `npm run check` and `npm run build`.
 
-- **🎵 Adding Custom Radio Tracks & Streams**:
-  - **Permanent Playlist (Config)**: Add MP3 URLs or YouTube links to the `RADIO_PLAYLIST` array in [`src/config/radioConfig.ts`](src/config/radioConfig.ts).
-  - **Runtime via UI / CLI**: Paste any YouTube URL into the Radio window's *STREAM CUSTOM SONG VIA YOUTUBE URL* input field, or execute `radio add <youtube_url>` directly in the CLI terminal. Custom streams persist in browser `localStorage`.
+Do not add an unqualified performance claim or assign team work to yourself. Distinguish measured results, qualitative observations, simulation results, and future plans.
 
----
+Project sections are ordinary Markdown headings, paragraphs, lists, tables, or code blocks. Level-two headings automatically populate the project navigation. Optional galleries and resource lists are generated from frontmatter. Omit them when not needed.
 
-## 💻 CLI Commands
+### Images, video, and calculations
 
-| Command | Description |
-| :--- | :--- |
-| `help` | List available commands (`man`) |
-| `about` | Bio, background & location (`cat bio.txt`) |
-| `skills` | Interactive proficiency meters (`cat skills.sh`) |
-| `collabs` | Projects & collaborations (`cat collabs.md`) |
-| `neofetch` | System specs & ASCII art logo |
-| `github` | Live GitHub profile metrics, stars & language stats (`stats`, `gh`) |
-| `repos` | Explore featured repositories with stars & links (`projects`) |
-| `links` | Display quick links to LinkedIn, X (Twitter), GitHub & Email (`socials`) |
-| `snake` | Play classic retro Snake arcade game (`./snake.sh`) |
-| `pong` | Play retro arcade Pong vs CPU (`game`, `play`, `./pong.sh`) |
-| `radio` | Play Lo-Fi radio or stream 24/7 Live YouTube stations (`radio add <yt_url>`, `radio play`) |
-| `spotify` | Live Spotify track & progress bar (`np`) |
-| `theme <name>` | Switch theme (`green`, `amber`, `cyan`, `dracula`, `mono`, `cappuccino`) |
-| `matrix` | Toggle digital rain canvas animation |
-| `crt` / `sfx` | Toggle CRT shader / Keypress sound effects |
-| `gui` / `cli` | Switch layout mode |
-| `clear` | Clear terminal screen buffer (`cls`) |
+Each `media` item has `src`, `alt`, and `caption`. Images open at full size when clicked. Add `type: video` for a video with native controls, plus optional `poster` and `mime` fields. Prefer a browser-compatible MP4/WebM and provide captions/transcripts as appropriate. The supplied MOV currently appears as a downloadable original rather than an embedded player.
 
----
+Use Markdown tables and code blocks for calculations, or an HTML block with `class="equation-block"` for a short displayed equation. There is no equation-rendering dependency. Interactive CAD/3D viewing is deferred until model files are supplied.
 
-## 📄 License
+### Resume and contact
 
-Distributed under the [MIT License](LICENSE.MD). © 2026 Nivin
+The public email is `bsauer@g.hmc.edu`. Replace the PDF at the same path to update the resume. The PDF is the supplied original, so its existing phone number remains in the downloadable document.
+
+### Theme and optional features
+
+The default is the original Phosphor Green theme, with JetBrains Mono and Share Tech Mono typography. A small terminal palette appears in the profile panel. Existing template themes remain available; the choice persists when browser storage is available. Content is visible without JavaScript. Terminal commands include `help`, `about`, `projects`, `skills`, `resume`, `contact`, `theme`, `gui`, and `clear`.
+
+The original games, radio, music/presence widgets, mobile notice, and effects remain in the source tree but are not mounted on portfolio pages. They do not load their integrations in the default site.
+
+## Hosting paths
+
+No deployment has been performed. For a custom domain set `SITE_URL` to the complete origin; set `BASE_PATH` when hosting under a subdirectory. GitHub Actions derives the Pages origin and repository path from `GITHUB_REPOSITORY`. Netlify uses its supplied `URL` variable. The existing GitHub Pages workflow deploys when changes are pushed to `main`; review hosting settings before pushing.
+
+Internal frontmatter asset paths and navigation use `src/utils/paths.ts` so they work under the configured base. For assets inserted directly into Markdown prose, use a relative path from the resulting project page or a base-aware component if the site is hosted under a subdirectory.
+
+## Credits and license
+
+Based on [Retro TUI Portfolio](https://github.com/nivinvysakh/astro-tui-portfolio) by Nivinvysakh. Original template distributed under the [MIT License](LICENSE.MD). Original license files are retained.
+
+Big thank you to Nivinvysakh for writing this template. All credit goes to them.

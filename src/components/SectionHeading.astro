@@ -1,0 +1,13 @@
+---
+interface Props {
+  id: string;
+  command: string;
+  title: string;
+  badge?: string;
+}
+const { id, command, title, badge } = Astro.props;
+---
+<header class="command-heading">
+  <h2 id={id}><span class="command-prompt" aria-hidden="true">&gt;</span><span class="heading-command">{command}</span><span class="heading-divider" aria-hidden="true">//</span><span>{title}</span></h2>
+  {badge && <span class="panel-badge">{badge}</span>}
+</header>
