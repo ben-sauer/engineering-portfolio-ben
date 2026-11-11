@@ -12,9 +12,6 @@ const base = process.env.BASE_PATH || (
   isGitHubPages && repository && repository !== `${owner}.github.io` ? `/${repository}/` : "/"
 );
 export default defineConfig({
-  site,
-  base,
-  devToolbar: { enabled: false },
-  server: { host: "127.0.0.1", port: 4321 },
-  vite: { plugins: [tailwindcss()] },
+  site: 'https://ben-sauer.github.io',
+  base: '/engineering-portfolio-ben',
 });
