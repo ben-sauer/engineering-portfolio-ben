@@ -6,7 +6,7 @@ interface Props { title?: string; description?: string; }
 const { title = `${PORTFOLIO_DATA.developer.name} // Engineering Portfolio`, description = PORTFOLIO_DATA.developer.bio } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="en" data-theme="green">
+<html lang="en" data-theme="mono">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,12 +14,12 @@ const { title = `${PORTFOLIO_DATA.developer.name} // Engineering Portfolio`, des
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#0a120b" />
+    <meta name="theme-color" content="#0f0f0f" />
     <link rel="icon" type="image/svg+xml" href={sitePath("favicon.svg")} />
     <title>{title}</title>
     <script>
       import { applyTheme } from "../config/themeConfig";
-      let theme = "green";
+      let theme = "mono";
       try { theme = localStorage.getItem("tui_theme") || theme; } catch { /* Storage is optional. */ }
       applyTheme(theme);
     </script>

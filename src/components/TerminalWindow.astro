@@ -19,7 +19,7 @@ const { developer } = PORTFOLIO_DATA;
       </div>}
       <label class="theme-label">Theme
         <select id="theme-select" aria-label="Color theme">
-          {ALL_THEMES.map(theme => <option value={theme.id} selected={theme.id === "green"}>{theme.name}</option>)}
+          {ALL_THEMES.map(theme => <option value={theme.id} selected={theme.id === "mono"}>{theme.name}</option>)}
         </select>
       </label>
     </div>
@@ -41,7 +41,7 @@ const { developer } = PORTFOLIO_DATA;
   import { applyTheme } from "../config/themeConfig";
   const select = document.querySelector<HTMLSelectElement>("#theme-select");
   if (select) {
-    select.value = document.documentElement.dataset.theme || "green";
+    select.value = document.documentElement.dataset.theme || "mono";
     select.addEventListener("change", () => {
       applyTheme(select.value);
       try { localStorage.setItem("tui_theme", select.value); } catch { /* Storage is optional. */ }

@@ -57,7 +57,7 @@ The public email is `bsauer@g.hmc.edu`. Replace the PDF at the same path to upda
 
 ### Theme and optional features
 
-The default is the original Phosphor Green theme, with JetBrains Mono and Share Tech Mono typography. A small terminal palette appears in the profile panel. Existing template themes remain available; the choice persists when browser storage is available. Content is visible without JavaScript. Terminal commands include `help`, `about`, `projects`, `skills`, `resume`, `contact`, `theme`, `gui`, and `clear`.
+The default is Monochrome, with JetBrains Mono and Share Tech Mono typography. A small terminal palette appears in the profile panel. Existing template themes remain available; the choice persists when browser storage is available. Content is visible without JavaScript. Terminal commands include `help`, `about`, `projects`, `skills`, `resume`, `contact`, `theme`, `gui`, and `clear`.
 
 The original games, radio, music/presence widgets, mobile notice, and effects remain in the source tree but are not mounted on portfolio pages. They do not load their integrations in the default site.
 
