@@ -46,7 +46,7 @@ const { developer, skills, leadership, experience } = PORTFOLIO_DATA;
   </section>
 
   <section id="leadership" class="portfolio-section panel-section" aria-labelledby="leadership-title">
-    <SectionHeading id="leadership-title" command="leadership.md" title="Leadership & outreach" badge="COMMUNITY" />
+    <SectionHeading id="leadership-title" command="leadership.md" title="Leadership & Outreach" badge="COMMUNITY" />
     <div class="leadership-body">
       <div class="leadership-title"><p class="eyebrow">STEM BRIDGES</p><h3>{leadership.title}</h3><p class="muted">{leadership.period}</p><p class="status-note">{leadership.status}</p></div>
       <div class="leadership-copy"><p>{leadership.description}</p><p>{leadership.details}</p></div>
@@ -54,7 +54,7 @@ const { developer, skills, leadership, experience } = PORTFOLIO_DATA;
   </section>
 
   <section id="experience" class="portfolio-section panel-section" aria-labelledby="experience-title">
-    <SectionHeading id="experience-title" command="experience.md" title="Experience & involvement" badge="BEYOND THE CASE STUDIES" />
+    <SectionHeading id="experience-title" command="experience.md" title="Experience & involvement" />
     <div class="experience-list">{experience.map((item, index) => <article class="experience-card">
       <div class="entry-heading"><h3><span class="entry-marker" aria-hidden="true">[{String(index + 1).padStart(2, "0")}]</span>{item.title}</h3><span class="entry-period">{item.period}</span></div>
       <p class="experience-org"><span>Organization:</span> {item.organization}</p>
